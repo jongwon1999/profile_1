@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <title>Welcome: It's Park</title>
+
+    <link rel="stylesheet" href="./css/common.css" type="text/css">
+    <link rel="stylesheet" href="./css/animation.css" type="text/css">
+    <style type="text/css">
+        div.wrapper {
+            max-width: 100rem;
+            width: 100rem;
+            padding: 1.5rem 1.5rem;
+            margin: 2rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 3rem;
+        }
+        div.box {
+            display: flex;
+            padding: 3rem 1rem;
+            border-radius: 1.5rem;
+            background-color: #fff;
+            box-shadow: 0 0.4rem 1rem 0 rgb(0 0 0 / 20%), 0 0.4rem 2rem 0 rgb(0 0 0 / 19%);
+            height: 47rem;
+        }
+        div.card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2.5rem;
+            width: 30rem;
+            background: url('./img/blob-haikei.svg') no-repeat 0 0;
+        }
+        div.contents_info {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 3rem;
+        }
+        div.contents_image {
+            width: 17rem;
+            height: 17rem;
+            border-radius: 50%;
+            background-image: url(itsme.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            border: 0.5rem solid #fff;
+        }
+        div.contents_info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin: 0rem 0rem 0.8rem 0rem;
+        }
+        span.info_name { 
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            font-weight: bold;
+            text-shadow: 0.2rem 0.2rem 0.2rem #E1E1E1;
+        }
+        span.info_job, span.info_local {
+            color: #4B4453;
+            font-size: 1.3rem;
+        }
+        div.contents_connect > a {
+            display: block;
+            border-radius: 2rem;
+            /*background: linear-gradient(141deg, rgba(0,174,141,1) 0%, rgba(0,133,139,1) 100%);*/
+            background: #F1f1f1;
+            color: #4B4453;
+            font-size: 1.2rem;
+            padding: 0.6rem 3rem;
+            transition: linear .2s;
+        }
+        div.contents_connect > a:hover {
+            transform: scale(1.02);
+        }
+
+        /* Introduce Box */
+        div.intro_box {
+            background-color : white;
+            border-radius    : 1.5rem;
+            display          : flex;
+            justify-content  : flex-start;
+            overflow         : hidden;
+            width : calc(100% - 33rem);
+        }
+        div.left_box {
+            border-right : 0.1rem solid #C1C1C1;
+            display      : inline-block;
+            padding      : 1rem;
+            width        : 13rem;
+        }
+        div.tab_btn_box {
+            align-items     : center;
+            display         : flex;
+            flex-direction  : column;
+            justify-content : flex-start;
+        }
+        div.right_box {
+            width: 47rem;
+            padding: 1rem 2rem 1rem 3rem;
+        }
+
+
+        .tab_btn_box {
+            align-items     : center;
+            display         : flex;
+            flex-direction  : column;
+            justify-content : flex-start;
+        }
+
+        .tab_btn_box > input[type='radio'] {
+            display : none;
+        }
+
+        .tab_btn_box > input[type='radio'] + label {
+            border-radius : 0.5rem;
+            color         : #4B4453;
+            cursor        : pointer;
+            display       : inline-block;
+            font-size     : 1.2rem;
+            margin        : 0.5rem 0;
+            padding       : 1rem 1.5rem;
+            width         : 100%;
+        }
+        .tab_btn_box > label > i {
+            padding-right: 0.3rem;
+        }
+
+        .tab_btn_box > input[type='radio'] + label:hover {
+            background-color : hsla(0, 0%, 78%, .2);
+        }
+
+        .tab_btn_box > input[type='radio']:checked + label {
+            background-color : #04c7f9;
+            color            : white;
+        }
+
+        .tab_box {
+            display : none;
+        }
+
+        .aboutme_name > span {
+            color: black;
+            font-family: 'Titillium Web', sans-serif;
+            font-size: 4rem;
+            font-weight: bold;
+        }
+        span.ul_effect {position: relative;}
+        span.ul_effect::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: .5rem;
+            border-bottom: .4rem solid #04c7f9;
+            width: 9rem;
+        }
+        .aboutme_job {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 1.6rem;
+        }
+        .aboutme_job > span {
+            font-size: 1.5rem;
+            color: #4F4F4F;
+        }
+        .aboutme_comment {margin-bottom: 2.4rem;}
+        .aboutme_comment > span {
+            font-size: 1.3rem;
+            color: #4F4F4F;
+            line-height: 2.2rem;
+        }
+        .btn_wrap > a {
+            display: inline-block;
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 1rem 2rem;
+            color: #F1F1F1;
+            margin: 0 rem 0.8rem 1.6rem 0 rem;
+            border-radius: 0.5rem;
+        } 
+        .btn_wrap > a:hover {
+            transform: scale(1.02);
+        }
+        
+        div.contents_title {
+            font-size: 1.7rem;
+            font-weight: bold;
+            padding-left: .5rem;
+            margin-bottom: 1.8rem;
+            margin-top: 0.5rem;
+            border-left: .3rem solid #04c7f9;
+        }
+
+        div.key_skill_wrap {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            margin-bottom: 2.4rem;
+        }
+       .key_skill {
+           
+           font-size: 1.2 rem;
+           color: white;
+           border-radius:2rem;
+           padding: 0.4rem 0.9rem;
+           margin: 0.3rem 0.4rem;
+       }
+        div.contents {
+            display: flex; 
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center; 
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+        span.content_name {
+            display: block; 
+            font-size: 1.2rem; 
+            text-align: left; 
+            width: 100%; 
+            padding-left: 1rem;
+            padding-bottom: .2rem;
+        }
+        div.bar_border {
+            width: 100%;
+            height: 2rem;
+            background-color: #f1f1f1;
+            overflow: hidden;
+            border-radius: 2rem;
+        }
+        div.bar_fill {
+            height: 2rem;
+            background: linear-gradient(34deg, rgba(118,56,245,1) 20%, rgba(221,4,249,1) 81%);
+            text-align: center;
+            line-height: 2rem;
+            color: white;
+            transition: all ease .3s;
+        }
+
+        div.resume_download_wrap {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 2.4rem;
+            background-color: #F1F1F1;
+            padding: 1rem;
+            border-radius: .5rem;
+        }
+        div.resume_title {
+            font-family: 'Titillium Web', sans-serif;
+            font-weight: bold;
+            font-size: 3rem;
+        }
+
+        div.resume_box {
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+            height: 28rem;
+            overflow: auto;
+        }
+        div.resume_contents {
+            margin-bottom: 2rem;
+        }
+        div.content_info {
+            display: flex;
+            flex-direction: column;
+            font-size: 1.2rem;
+            border-bottom: 0.1rem solid #f1f1f1;
+            padding: .5rem;
+        }
+        div.first_floor {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: .5rem;
+        }
+        div.first_floor > span:first-child {
+            font-size: 1.3rem;
+            color: #4054B2;
+            font-weight: bold;
+        }
+        div.first_floor > span:last-child {
+            color: #DA4536;
+            font-weight: normal;
+            font-style: italic;
+        }
+        .btn_download{
+            display:inline-block;
+            font-size: 1.4rem;
+            font-weight: bold;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            color:#fff;
+            background-color: #04c7f9;
+        }
+        
+        div.history_box {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5rem 0rem 0.5rem 0rem; 
+            height: 18rem;
+            overflow: auto;
+        }
+        div.resume_contents {
+            margin-bottom: 2rem;}
+
+        div.photo_box {
+             display: flex;
+            flex-direction: column;
+            padding: 0.5rem 0rem 0.5rem 0rem; 
+            height: 42rem;
+            overflow: auto;
+        }
+
+        div.gallary_image {
+            margin-left:3.5rem;
+            margin-bottom:0.4rem;
+        flex-direction: column;
+        width: 37.5rem;
+        height: 37.5rem;
+        border-radius: 10%;
+        background-image: url(gallary1.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        border: 0.5rem solid #fff;
+        }
+
+        div.gallary_image_2 {
+            margin-left:3.5rem;
+            margin-bottom:0.4rem;
+        flex-direction: column;
+        width: 37.5rem;
+        height: 37.5rem;
+        border-radius: 10%;
+        background-image: url(gallary2.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        border: 0.5rem solid #fff;
+        }
+
+        div.gallary_image_3 {
+            margin-left:3.5rem;
+            margin-bottom:0.4rem;
+        flex-direction: column;
+        width: 37.5rem;
+        height: 37.5rem;
+        border-radius: 10%;
+        background-image: url(gala4.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        border: 0.5rem solid #fff;
+        }
+        div.gallary_image_4 {
+            margin-left:3.5rem;
+            margin-bottom:0.4rem;
+        flex-direction: column;
+        width: 37.5rem;
+        height: 37.5rem;
+        border-radius: 10%;
+        background-image: url(gallary3.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        border: 0.5rem solid #fff;
+        }
+        div.gallary_image_5 {
+            margin-left:3.5rem;
+            margin-bottom:0.4rem;
+        flex-direction: column;
+        width: 37.5rem;
+        height: 37.5rem;
+        border-radius: 10%;
+        background-image: url(gala5.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        border: 0.5rem solid #fff;
+        }
+
+        div.gallary_image_6 {
+            margin-left:3.5rem;
+            margin-bottom:0.4rem;
+        flex-direction: column;
+        width: 37.5rem;
+        height: 37.5rem;
+        border-radius: 10%;
+        background-image: url(gala6.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        border: 0.5rem solid #fff;
+        }
+
+        
+        div.blueprint_box {
+            width: 44.4rem;
+            height: 33.3rem;
+            border-radius: 5%;
+            background-image: url(blueprint.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            border: 0.5rem solid #fff;
+        }
+
+        div.photo_contents {
+            margin-bottom: 2rem;
+        }
+
+        .btn_music{
+            display:inline-block;
+            font-size: 1.4rem;
+            font-weight: bold;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            color:#fff;
+            background-color: #04c7f9;
+           
+        }
+            /* responsive web design
+            1. smart phone */
+            @media(min-width: 320px) and (max-width: 768px){
+                html,body {font-size:53%;}
+                div.intro_box {display: none;}
+                div.wrapper {
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+        
+         
+
+    </style>
+</head>
+<body>
+   
+    <div class="wrapper">
+        <!-- Profile Box -->
+        <div class="box card">
+            <!-- 카드 프로필 이미지 -->
+
+
+
+<div class="contents_info">
+  
+    <span class="info_name">JONGWON PARK</span>
+     <span class="info_job">Mayor Of Suncheon City</span>
+</div>
+
+
+<div class="contests_local">
+ <i class="fas fa-globe "></i>
+    <span class="info_local">Suncheon-Republic of Korea </span>
+</div>
+
+<div class="contents_connect">
+    <a>jpark8457@gmail.com</a>
+</div>
+
+
+
+
+            <div class="contents_image"></div>
+            <!-- 카드프로필 sns 링크  -->
+            <div class="contents_sns">
+                <div class="middle">
+                    <a class="snsbtn" href="https://github.com/jongwon1999" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a class="snsbtn" href="https://www.youtube.com/channel/UCWPYo3QBx3P8DL1jfdku9vQ" target="_blank">
+                        <i class="fab fa-google"></i>
+                    </a>
+                    <a class="snsbtn" href="https://www.facebook.com/takemehome8457/" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a class="snsbtn" href="https://www.instagram.com/takemehome_99/" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Introduce Box 우측-->
+        <div class="box intro_box">
+            <div class="left_box">
+                <div class="tab_btn_box">
+                    <input type="radio" name="tabmenu" id="tab01" checked>
+                    <label for="tab01">About Me</label>
+                    <input type="radio" name="tabmenu" id="tab02">
+                    <label for="tab02">Skills</label>
+                    <input type="radio" name="tabmenu" id="tab03">
+                    <label for="tab03">Resume</label>
+                    <input type="radio" name="tabmenu" id="tab04">
+                    <label for="tab04">History</label>
+                    <input type="radio" name="tabmenu" id="tab05">
+                    <label for="tab05">Gallery</label>
+                    <input type="radio" name="tabmenu" id="tab06">
+                    <label for="tab06">Blueprint</label>
+                    <input type="radio" name="tabmenu" id="tab07">
+                    <label for="tab07">ETC</label>
+                </div>
+                
+            </div>
+    
+            <div class="right_box">
+                <div class="tab_box box01" style="display: block;">
+                    <div class="aboutme_name">
+                        <span>JONGWON <span class="ul_effect">PARK</span></span>
+                    </div>
+                    <div class="aboutme_job">
+                        <span><i class="       fas fa-user"></i> 박종원</span>
+                        <br>
+                        <span><i class="fas fa-birthday-cake"></i> Birth: 1999.09.08</span>
+                    </div>
+                    <div class="aboutme_comment">
+                        <span>Hi, my name is <span class="main-color">JONGWON PARK</span> and I'm a <span class="main-color">Student</span>.<br>I am attending <span class="main-color">Chonnam National University</span>. My major is <span class="main-color">Industrial Engineering</span>, and i am preparing for <span class="main-color">Software Engineering</span> as a minor. <br> Welcome to my personal website. Do you want to know about me? <br>Check out my <span class='main-color'>online resume</span>.</span>
+                    </div>
+                    <div class="btn_wrap">
+                        <a href='resume_ai+x.docx' class="main-bg-color"><i class="fas fa-file-word"></i> Download Resume</a>
+                        <a href='#' class="sub-bg-color btn_view_resume"><i class="fas fa-eye"></i> View Resume</a> 
+                        
+                    </div>
+                </div>
+                <div class="tab_box box02">
+                    <div class="contents_title"><i class="fas fa-key"></i> Key Skills</div>
+                    <div class="key_skill_wrap">
+                        <span class="key_skill" style="background-color: #6AB04C;">작업관리</span>
+                        <span class="key_skill" style="background-color: #1DA1F2;">창의적문제해결</span>
+                        <span class="key_skill" style="background-color: #462db9;">어학</span>
+                        <span class="key_skill" style="background-color: #da48a9;">재무경영분석</span>
+                        <span class="key_skill" style="background-color: #3caf8d;">프로그래밍</span>
+                    </div>
+
+                    <div class="contents_title"> <i class="fas fa-book"></i> My Skills</div>
+                    <div class="skill_bar_wrap">
+                        <div class="contents">
+                            <span class="content_name">작업관리</span>
+                            <div class="bar_border">
+                                <div class="bar_fill" style="width: 80%">80%</div>
+                            </div>
+                        </div>    
+
+                        <div class="contents">
+                            <span class="content_name">창의적문제해결</span>
+                            <div class="bar_border">
+                                <div class="bar_fill" style="width: 80%">80%</div>
+                            </div>
+                        </div>   
+                        
+                        <div class="contents">
+                            <span class="content_name">어학</span>
+                            <div class="bar_border">
+                                <div class="bar_fill" style="width: 77%">TOEIC 770</div>
+                            </div>
+                        </div>    
+
+                        <div class="contents">
+                            <span class="content_name">재무경영분석</span>
+                            <div class="bar_border">
+                                <div class="bar_fill" style="width: 40%">40%</div>
+                            </div>
+                        </div>   
+
+                        <div class="contents">
+                            <span class="content_name">프로그래밍</span>
+                            <div class="bar_border">
+                                <div class="bar_fill" style="width: 10%">10%</div>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+                <div class="tab_box box03">
+                    <div class="resume_download_wrap">
+                        <div class="resume_title">Online Resume</div>
+                    <a href="alt+x_resume_pdf.pdf" class="btn_download"><i class="fas fa-file-pdf"></i> Download PDF Version</a>
+                    </div>
+                    
+                    <div class="resume_box">
+                        <div class="resume_contents">
+                            <div class="contents_title"><i class="fas fa-trophy"></i> 교육경력 및 수상</div>
+                            <div class="content_info">
+                             <div class="first_floor">
+                                    <span>기초창의설계 경진대회 은상</span>
+                                    <span>2021.12.01</span>
+                                    <div class="second_floor">
+                                        <span>전남대공학교육혁신센터</span>
+                                  </div>
+                            </div> 
+                             <div class="first_floor">
+                                <span>AI+X 대학생 코딩캠프</span>
+                                <span>2022.01.05~07</span>
+                                <div class="second_floor">
+                                    <span>광주전남지역혁신플랫폼</span>
+                             </div>
+                             
+                        </div>  
+                        <div class="resume_contents">
+                            <div class="contents_title"><i class="fas fa-medal"></i> 자격사항</div>
+                            <div class="content_info">
+                                <div class="first_floor">
+                                <span>컴퓨터활용능력 1급</span>
+                                <span>2021.08</span>
+                                <div class="second_floor">
+                                    <span>대한상공회의소</span>
+                            </div>
+                            </div>
+                            <div class="first_floor">
+                                <span>한국사능력검정 2급</span>
+                                <span>2020.10</span>
+                                <div class="second_floor">
+                                    <span>국사편찬위원회</span>
+                                </div>
+                            </div>
+                            <div class="first_floor">
+                                <span>워드프로세서 1급</span>
+                                <span>2021.09</span>
+                                <div class="second_floor">
+                                    <span>대한상공회의소</span>
+                                </div>
+                            </div>
+                            <div class="first_floor">
+                                <span>정보처리기능사</span>
+                                <span>2020.07</span>
+                                <div class="second_floor">
+                                    <span>산업인력공단</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+               
+            </div>
+            <div class="tab_box box04">
+                <div class="history_box">
+                <div class="history_contents">
+                     <div class="contents_title"><i class="fas fa-graduation-cap"></i> 학력</div> 
+                     <div class="content_info">
+                       <div class="first_floor">
+                       <span>순천금당고등학교 졸업</span>
+                       <span>2018.02</span>
+                  
+                   </div>
+                   <div class="first_floor">
+                       <span>금오공과대학교 기계공학과 입학</span>
+                       <span>2018.03</span>      
+                   </div>
+
+                   <div class="first_floor">
+                       <span>금오공과대학교 기계공학과 중퇴</span>
+                       <span>2018.12</span>      
+                   </div>
+                   <div class="first_floor">
+                       <span>전남대학교 산업공학과 재학 중</span>
+                       <span>2019.03~현재</span>      
+                   </div>
+                </div>
+                
+               </div>
+               </div>
+               <div class="history_box">
+                <div class="history_contents">
+                     <div class="contents_title"><i class="fas fa-award"></i> 활동 이력</div> 
+                     <div class="content_info">
+                       <div class="first_floor">
+                       <span>2018 평창동계올림픽 관중안내</span>
+                       <span>2018.01~2018.02</span>
+                  
+                   </div>
+                   <div class="first_floor">
+                       <span>육군 병장 만기 전역 (제2작전사령부 예하)</span>
+                       <span>2019.08~2021.03</span>      
+                   </div>
+
+                   <div class="first_floor">
+                       <span>전남대학교 산업공학과 학생회 기획부장</span>
+                       <span>2021.03~2021.12</span>      
+                   </div>
+                   <div class="first_floor">
+                    <span>공과대학 도서관자치위원회 운영위원</span>
+                    <span>2021.03~2021.12</span>      
+                </div>
+
+                   <div class="first_floor">
+                       <span>전남대학교 산업공학과 편집부장</span>
+                       <span>2021.06~현재</span>      
+                   </div>
+                   <div class="first_floor">
+                    <span>전남대학교 내일 총학생회 자치협력국원</span>
+                    <span>2021.08~2021.12</span>      
+                   </div>
+                   <div class="first_floor">
+                    <span>2021 전남대학교 대동제 축제운영위원</span>
+                    <span>2021.11</span>      
+                   </div>
+                   <div class="first_floor">
+                    <span>제 1회 전남대학교 총장배 풋살대회 운영위원</span>
+                    <span>2021.12</span>      
+                   </div>
+                   <div class="first_floor">
+                    <span>2022 이음 공과대학 학생회 총집행국장</span>
+                    <span>2022.01~ 현재</span>      
+                   </div>
+                   
+                </div>
+                
+               </div>
+               </div>
+               </div>
+                     
+                <div class="tab_box box05">
+                 <div class="contents_title"><i class="fas fa-camera"></i> Photos</div>
+
+                   <div class= "photo_box">
+                    <div class="photo_contents">
+                     <div class="gallary_image"></div>
+                     <div class="gallary_image_2"></div>
+                     <div class="gallary_image_3"></div>
+                     <div class="gallary_image_4"></div>
+                     <div class="gallary_image_5"></div>
+                     <div class="gallary_image_6"></div>
+                    </div> 
+                   </div>  
+                  </div>
+                     
+                <div class="tab_box box06">
+                    <div class="contents_title"><i class="fas fa-road"></i> Road Map</div>
+                    <div class="blueprint_box"></div>
+                 </div>
+                    
+                 <div class="tab_box box07">
+                    <div class="contents_title"><i class="far fa-newspaper"></i> 인터뷰 링크</div>
+                    <div class="resume_download_wrap">
+                        <div class="resume_title">Article About Me</div>
+                    <a href="https://ie.jnu.ac.kr/106445" class="btn_download">Move to arcticle</a>
+                    </div>
+
+                    <div class="contents_title"><i class="fas fa-list"></i>  방명록 링크</div>
+                    <div class="resume_download_wrap">
+                        <div class="resume_title">Online Guest book</div>
+                    <a href="https://padlet.com/jpark8457/g3liux71jfk4pnqv" class="btn_download">Move to my padlet</a>
+                    </div>
+                    <div class="aboutme_comment">
+                        <span><span class="main-color">Thank you for your coming to my Web portpolio.</span><br> Hope you enjoyed it! <span class="main-color">Have a good day <i class="fas fa-heart"></i></span>
+               
+                    </div>
+                 </div>
+            
+        </div>
+    </div>
+
+   
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).on('click', '.tab_btn_box > input', function () {
+        if ($(this).is(':checked')) {
+            $('.tab_box').css('display', 'none');
+            const id = $(this).attr('id');
+            const num = id.substring(3, 5);
+            const selector = ".box" + num;
+            $(selector).css('display', 'block');
+        }
+    });
+
+    $(document).on('click', '.btn_view_resume', function() {
+        $('#tab03').prop('checked', true);
+        $('.tab_box').css('display', 'none');
+        $('.box03').css('display', 'block');
+
+    });
+</script> 
+</html>
